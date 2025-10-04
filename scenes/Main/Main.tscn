@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvlww8uedlknx"]
+
+[ext_resource type="Script" uid="uid://cfn324iqbgbj6" path="res://scenes/Main/main.gd" id="1_d463r"]
+[ext_resource type="Texture2D" uid="uid://ddcnc7qpvudsw" path="res://assets/parallax background/plx-1.png" id="1_pkilc"]
+[ext_resource type="Texture2D" uid="uid://cx64qpor30pkn" path="res://assets/parallax background/plx-2.png" id="2_d463r"]
+[ext_resource type="Texture2D" uid="uid://ccolpg0btbw2e" path="res://assets/parallax background/plx-3.png" id="3_q8kdv"]
+[ext_resource type="Texture2D" uid="uid://defryvmy40n4s" path="res://assets/parallax background/plx-4.png" id="4_exyxu"]
+[ext_resource type="Texture2D" uid="uid://4uux2vxyalwc" path="res://assets/parallax background/plx-5.png" id="5_r0gd4"]
+[ext_resource type="PackedScene" uid="uid://dt858u2xk074" path="res://scenes/Player/Player.tscn" id="7_q8kdv"]
+[ext_resource type="PackedScene" uid="uid://cn8yx24sgv24j" path="res://scenes/Level/Level.tscn" id="8_exyxu"]
+[ext_resource type="PackedScene" uid="uid://bcueeyoy2yjho" path="res://scenes/UI/HUD.tscn" id="9_r0gd4"]
+[ext_resource type="AudioStream" uid="uid://cm0fpq4jg24et" path="res://assets/audio/bgm/we-have-time-ogg-67849.ogg" id="10_krkin"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_d463r")
+
+[node name="BG" type="ParallaxBackground" parent="."]
+
+[node name="L1" type="ParallaxLayer" parent="BG"]
+z_index = -50
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/L1"]
+position = Vector2(137, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_pkilc")
+
+[node name="L2" type="ParallaxLayer" parent="BG"]
+z_index = -40
+motion_scale = Vector2(0.25, 0.25)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/L2"]
+position = Vector2(137, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_d463r")
+
+[node name="L3" type="ParallaxLayer" parent="BG"]
+z_index = -30
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/L3"]
+position = Vector2(137, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_q8kdv")
+
+[node name="L4" type="ParallaxLayer" parent="BG"]
+z_index = -20
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/L4"]
+position = Vector2(137, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_exyxu")
+
+[node name="L5" type="ParallaxLayer" parent="BG"]
+z_index = -10
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/L5"]
+position = Vector2(137, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_r0gd4")
+
+[node name="Player" parent="." instance=ExtResource("7_q8kdv")]
+position = Vector2(45, 306)
+
+[node name="Level" parent="." instance=ExtResource("8_exyxu")]
+position = Vector2(2, 23)
+
+[node name="HUD" parent="." instance=ExtResource("9_r0gd4")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_krkin")
+volume_db = 4.0
+autoplay = true

@@ -1,0 +1,130 @@
+[gd_scene load_steps=26 format=3 uid="uid://dyfvbooprl1e5"]
+
+[ext_resource type="Texture2D" uid="uid://bx2sbbxpf3cap" path="res://assets/assets/coin/coin1.png" id="1_8cmuu"]
+[ext_resource type="Script" uid="uid://bs8md7r6cnvoe" path="res://scenes/Coin/coin.gd" id="1_c3kre"]
+[ext_resource type="Texture2D" uid="uid://b4kxaj54whbv3" path="res://assets/assets/coin/coin2.png" id="2_jq3ok"]
+[ext_resource type="Texture2D" uid="uid://c8eru5g0gu7m1" path="res://assets/assets/coin/coin3.png" id="3_c3kre"]
+[ext_resource type="Texture2D" uid="uid://y2ienq2u0a4p" path="res://assets/assets/coin/coin4.png" id="4_bdcy1"]
+[ext_resource type="Texture2D" uid="uid://dofv02b56ts2c" path="res://assets/assets/coin/coin5.png" id="5_7ia76"]
+[ext_resource type="Texture2D" uid="uid://dj2a3ljv7il5s" path="res://assets/assets/coin/coin6.png" id="6_ty8qh"]
+[ext_resource type="Texture2D" uid="uid://cphn81ex64nff" path="res://assets/assets/coin/coin7.png" id="7_fub7g"]
+[ext_resource type="Texture2D" uid="uid://r1bl7mxfqy3f" path="res://assets/assets/coin/coin8.png" id="8_7kkkg"]
+[ext_resource type="Texture2D" uid="uid://p1r53avgrgke" path="res://assets/assets/coin/coin9.png" id="9_hpo38"]
+[ext_resource type="Texture2D" uid="uid://eakyo34xofx5" path="res://assets/assets/coin/coin10.png" id="10_2jmqe"]
+[ext_resource type="AudioStream" uid="uid://cb1fe2glfd2k7" path="res://assets/audio/sfx/coin-recieved-230517.mp3" id="11_jq3ok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj721"]
+atlas = ExtResource("1_8cmuu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3i8v"]
+atlas = ExtResource("2_jq3ok")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lw35"]
+atlas = ExtResource("3_c3kre")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd5es"]
+atlas = ExtResource("4_bdcy1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as4ls"]
+atlas = ExtResource("5_7ia76")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w8di"]
+atlas = ExtResource("6_ty8qh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pvwu"]
+atlas = ExtResource("7_fub7g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52dyt"]
+atlas = ExtResource("8_7kkkg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eymo8"]
+atlas = ExtResource("9_hpo38")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inqll"]
+atlas = ExtResource("10_2jmqe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chdn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj721")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3i8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lw35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd5es")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as4ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w8di")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pvwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52dyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eymo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inqll")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6b8x"]
+radius = 8.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c3kre"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 140.0
+angular_velocity_min = -6.00002
+angular_velocity_max = 5.99998
+gravity = Vector3(0, 300, 0)
+scale_min = 0.6
+
+[node name="Coin" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_c3kre")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_chdn3")
+animation = &"spin"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m6b8x")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_jq3ok")
+volume_db = 3.0
+
+[node name="PFX" type="GPUParticles2D" parent="."]
+z_index = 5
+emitting = false
+amount = 12
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_c3kre")
